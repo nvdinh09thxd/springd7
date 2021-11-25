@@ -1,9 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <h3>Danh mục tin</h3>
 <ul>
-	<li><a href="cat.php" title="">Thời sự</a></li>
-	<li><a href="cat.php" title="">Góc nhìn</a></li>
-	<li><a href="cat.php" title="">Thế giới</a></li>
-	<li><a href="cat.php" title="">Kinh doanh</a></li>
+	<c:if test="${not empty listDanhMucTin}">
+		<c:forEach items="${listDanhMucTin}" var="danhMucTin">
+			<li><a href="#" title="">${danhMucTin.getTenDanhMucTin()}</a></li>
+		</c:forEach>
+	</c:if>
+
 </ul>
