@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
+encoding//src/main/java/spring/controllers/JDBCController.java=UTF-8
 encoding//src/main/webapp/WEB-INF/views/views/anews/add.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/views/anews/cat.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/views/anews/detail.jsp=UTF-8
