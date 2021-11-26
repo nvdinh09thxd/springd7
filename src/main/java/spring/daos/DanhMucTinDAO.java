@@ -19,4 +19,9 @@ public class DanhMucTinDAO {
 		String sql = "SELECT * FROM  danhmuctin";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(DanhMucTin.class));
 	}
+
+	public DanhMucTin findById(int id) {
+		String sql = "SELECT * FROM  danhmuctin WHERE idDanhMucTin = ?";
+		return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(DanhMucTin.class), id);
+	}
 }

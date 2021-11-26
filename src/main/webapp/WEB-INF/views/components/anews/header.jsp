@@ -16,7 +16,7 @@
 <!-- begin menu -->
 <div id="menu">
 	<ul>
-		<li class="active"><a href="index.php" title="">Trang chủ</a></li>
+		<li class="active"><a href="${pageContext.request.contextPath}/anews/index" title="">Trang chủ</a></li>
 	</ul>
 	<div class="clr"></div>
 </div>

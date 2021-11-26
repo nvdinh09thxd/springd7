@@ -1,36 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<h3>Thời sự</h3>
+<h3>${danhMucTin.tenDanhMucTin}</h3>
 <div class="main-content items-new">
+<c:url value="/anews/detail" var="urlDetail"></c:url>
 	<ul>
-		<li>
-			<h2>
-				<a href="detail.php" title="">Trung Quốc điều thêm 17 tàu đến khu vực giàn khoan</a>
-			</h2>
-			<div class="item">
-				<p>Để bảo vệ giàn khoan, Trung Quốc đã điều thêm 17 tàu các loại so với hôm trước, sẵn sàng đâm va vào tàu Việt Nam.</p>
-				<div class="clr"></div>
-			</div>
-		</li>
-		<li>
-			<h2>
-				<a href="detail.php" title="">Trọng tài - vết đen của kỳ World Cup sôi động </a>
-			</h2>
-			<div class="item">
-				<p>World Cup 2014 chưa đi hết lượt đầu vòng bảng nhưng các trọng tài đẳng cấp FIFA đã có tới bốn trận bị chỉ trích dữ dội.</p>
-				<div class="clr"></div>
-			</div>
-		</li>
-		<li>
-			<h2>
-				<a href="detail.php" title="">Những mỹ nhân Việt duyên dáng ở tuổi tứ tuần</a>
-			</h2>
-			<div class="item">
-				<p>Để bảo vệ giàn khoan, Trung Quốc đã điều thêm 17 tàu các loại so với hôm trước, sẵn sàng đâm va vào tàu Việt Nam.</p>
-				<div class="clr"></div>
-			</div>
-		</li>
+		<c:choose>
+			<c:when test="${not empty listTinTucByCatId}">
+				<c:forEach items="${listTinTucByCatId}" var="news">
+					<li>
+						<h2>
+							<a href="${urlDetail}/${news.idTinTuc}" title="">${news.tenTinTuc}</a>
+						</h2>
+						<div class="item">
+							<p>${news.moTa}</p>
+							<div class="clr"></div>
+						</div>
+					</li>
+				</c:forEach>
+			</c:when>
+			<c:otherwise>
+				<div>
+					<p>Data empty</p>
+				</div>
+			</c:otherwise>
+		</c:choose>
 		
 	</ul>
 </div>

@@ -17,7 +17,11 @@ public class DanhMucTinService {
 	public List<DanhMucTin> findAll() {
 		List<DanhMucTin> list = danhMucTinDAO.findAll();
 		return list;
-
+	}
+	
+	public DanhMucTin findById(int id) {
+		DanhMucTin danhMucTin = danhMucTinDAO.findById(id);
+		return danhMucTin;
 	}
 
 }
