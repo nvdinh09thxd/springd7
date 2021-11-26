@@ -18,4 +18,14 @@ public class TinTuc {
 	private String chiTiet;
 	private Timestamp ngayDang;
 	private int idDanhMucTin;
+
+	public TinTuc(String tenTinTuc, String moTa, String hinhAnh, String chiTiet, int idDanhMucTin) {
+		super();
+		this.tenTinTuc = tenTinTuc;
+		this.moTa = moTa;
+		this.hinhAnh = hinhAnh;
+		this.chiTiet = chiTiet;
+		this.idDanhMucTin = idDanhMucTin;
+	}
+
 }

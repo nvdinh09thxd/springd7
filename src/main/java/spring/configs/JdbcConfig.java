@@ -8,10 +8,14 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.transaction.TransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @PropertySource("classpath:jdbc/database.properties")
+@EnableTransactionManagement
 public class JdbcConfig {
 
 	@Autowired
@@ -27,6 +31,13 @@ public class JdbcConfig {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate();
 		jdbcTemplate.setDataSource(dataSource()); // DI
 		return jdbcTemplate;
+	}
+
+	@Bean
+	public TransactionManager transactionManager() {
+		DataSourceTransactionManager dataSourceTransactionManager = new DataSourceTransactionManager();
+		dataSourceTransactionManager.setDataSource(dataSource());
+		return dataSourceTransactionManager;
 	}
 
 	@Bean("dataSource") // IOC

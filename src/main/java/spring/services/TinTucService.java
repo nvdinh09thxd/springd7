@@ -28,5 +28,10 @@ public class TinTucService {
 		TinTuc tinTuc = tinTucDAO.findById(id);
 		return tinTuc;
 	}
+	
+	public int insertOneRecord(TinTuc news) {
+		int results = tinTucDAO.insertOneRecord(news);
+		return results;
+	}
 
 }

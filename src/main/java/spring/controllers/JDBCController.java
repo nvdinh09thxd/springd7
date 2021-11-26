@@ -7,6 +7,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,7 +41,7 @@ public class JDBCController {
 			return "Không có dữ liệu";
 		}
 	}
-	
+
 	@GetMapping(value = "jdbc/getAll", produces = "text/html; charset=UTF-8")
 	public String jdbcDemo3(Model model) {
 		String sql = "SELECT * FROM tintuc";
@@ -51,6 +52,17 @@ public class JDBCController {
 		} catch (Exception e) {
 			return "demo";
 		}
+	}
+
+	@Transactional
+	@GetMapping("jdbc2")
+	@ResponseBody
+	public String jdbc2() {
+		String sql = "INSERT INTO danhmuctin(tenDanhMucTin) VALUES ('Danh muc tin')";
+		jdbcTemplate.update(sql);
+		sql = "INSERT INTO tintuc(tenTinTuc, moTa, hinhAnh, chiTiet, idDanhMucTin) VALUES ('Ten', 'Mo Ta', '', 'Chi Tiet', 1)";
+		jdbcTemplate.update(sql);
+		return "";
 	}
 
 }
