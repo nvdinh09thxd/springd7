@@ -32,8 +32,11 @@ public class TinTucDAO {
 
 	public int insertOneRecord(TinTuc tinTuc) {
 		String sql = "INSERT INTO tintuc(tenTinTuc, moTa, hinhAnh, chiTiet, idDanhMucTin) VALUES (?, ?, ?, ?, ?)";
-		return jdbcTemplate.update(sql, new Object[] { tinTuc.getTenTinTuc(), tinTuc.getMoTa(), tinTuc.getHinhAnh(),
+		jdbcTemplate.update(sql, new Object[] { tinTuc.getTenTinTuc(), tinTuc.getMoTa(), tinTuc.getHinhAnh(),
 				tinTuc.getChiTiet(), tinTuc.getIdDanhMucTin() });
+		sql = "SELECT idTinTuc FROM tintuc ORDER BY idTinTuc DESC LIMIT 1";
+		TinTuc tinTucNew = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(TinTuc.class));
+		return tinTucNew.getIdTinTuc();
 	}
 
 }

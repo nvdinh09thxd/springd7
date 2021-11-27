@@ -42,7 +42,7 @@ public class AppConfig {
 		return tilesConfigurer;
 	}
 
-	@Bean(name = "multipartResolver")
+	@Bean("multipartResolver")
 	public MultipartResolver getMultipartResolver() {
 		CommonsMultipartResolver resover = new CommonsMultipartResolver();
 		return resover;

@@ -17,6 +17,7 @@
 <div id="menu">
 	<ul>
 		<li class="active"><a href="${pageContext.request.contextPath}/anews/index" title="">Trang chủ</a></li>
+		<li style="float: right;"><a href="${pageContext.request.contextPath}/anews/add" title="">Thêm tin</a></li>
 	</ul>
 	<div class="clr"></div>
 </div>

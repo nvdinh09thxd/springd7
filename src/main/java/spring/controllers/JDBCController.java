@@ -3,7 +3,6 @@ package spring.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
@@ -37,7 +36,7 @@ public class JDBCController {
 		try {
 			TinTuc tinTuc = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(TinTuc.class), id);
 			return tinTuc.toString();
-		} catch (EmptyResultDataAccessException e) {
+		} catch (Exception e) {
 			return "Không có dữ liệu";
 		}
 	}
