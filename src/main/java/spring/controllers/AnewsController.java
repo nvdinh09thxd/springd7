@@ -6,11 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletContext;
+import javax.validation.Valid;
 
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -61,7 +63,6 @@ public class AnewsController {
 		}
 
 		if (listTinTuc.size() == 0) {
-			System.out.println(listTinTuc.size());
 			listTinTuc = tinTucService.findAll();
 		}
 		model.addAttribute("listTinTuc", listTinTuc);
@@ -85,13 +86,16 @@ public class AnewsController {
 	}
 
 	@GetMapping("add")
-	public String add(Model model) {
+	public String add() {
 		return "anews.add";
 	}
 
 	@PostMapping("add")
-	public String add(@RequestParam MultipartFile hinhanh, @RequestParam String tenTinTuc, @RequestParam String moTa,
-			@RequestParam String chiTiet, @RequestParam int idDanhMucTin, RedirectAttributes re) {
+	public String add(@Valid @ModelAttribute("error") TinTuc tinTuc, BindingResult rs,
+			@RequestParam MultipartFile hinhanh, RedirectAttributes re) {
+		if (rs.hasErrors()) {
+			return "anews.add";
+		}
 		String fileName = "";
 		if (!hinhanh.isEmpty()) {
 			String dirUpload = servletContext.getRealPath("WEB-INF/resources/uploads");
@@ -110,7 +114,8 @@ public class AnewsController {
 				e.printStackTrace();
 			}
 		}
-		TinTuc news = new TinTuc(tenTinTuc, moTa, fileName, chiTiet, idDanhMucTin);
+		TinTuc news = new TinTuc(tinTuc.getTenTinTuc(), tinTuc.getMoTa(), fileName, tinTuc.getChiTiet(),
+				tinTuc.getIdDanhMucTin());
 		int idTinTucNew = tinTucService.insertOneRecord(news);
 		re.addFlashAttribute("idTinTucNew", idTinTucNew);
 		return "redirect:/anews/index";

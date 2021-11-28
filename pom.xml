@@ -66,6 +66,11 @@
 			<version>1.4</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>6.1.0.Final</version>
+		</dependency>
 
 		<!-- Tiles -->
 		<!-- Tiles API -->
